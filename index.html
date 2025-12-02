@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Tools Showcase - Home</title>
+    <link rel="stylesheet" href="/src/styles/main.scss">
+</head>
+<body>
+
+    <header class="l-header">
+      <div class="l-container l-header__content">
+        
+        <div class="c-logo">
+          <a href="index.html" class="c-logo__link" aria-label="Dev Tools Showcase: Go to Home">
+            <img 
+              src="/src/assets/logo.png" 
+              srcset="/src/assets/logo.png 1x, /src/assets/logo@2x.png 2x" 
+              class="c-logo__img"
+              height="100" 
+              alt="Dev Tools Showcase Logo">
+          </a>
+        </div>
+        
+        <nav class="c-nav" aria-label="Main navigation">
+          <ul class="c-nav__list">
+            <li class="c-nav__item"><a href="index.html" class="c-nav__link" aria-current="page">Home</a></li>
+            <li class="c-nav__item"><a href="tools.html" class="c-nav__link">Tools</a></li>
+            <li class="c-nav__item"><a href="about.html" class="c-nav__link">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="l-main l-container">
+        <section class="c-hero u-mb-6">
+            <h1 class="c-hero__title">Tools showcase</h1>
+            <p class="c-hero__subtitle" data-i18n="tagline.developers">Showcase of micro utilities for <b>developers</b></p>
+            <p class="c-hero__text">Fast, easy and with beautiful examples</p>
+        </section>
+
+        <section aria-labelledby="popular-tools-heading">
+            <h2 id="popular-tools-heading" class="u-mb-4" style="text-align: center;">Popular tools</h2>
+            
+            <div class="c-tool-carousel">
+                <button class="c-tool-carousel__nav c-tool-carousel__nav--left" aria-label="Previous tool">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="c-tool-carousel__track">
+                    <div class="c-tool-carousel__item">
+                        <article class="c-card">
+                            <h3 class="c-card__title">Name</h3>
+                            <div class="c-card__snippet" role="region" aria-label="Tool code fragment">
+                                <pre><code class="c-card__code">Code snippet</code></pre>
+                            </div>
+                            <div class="c-card__tags">
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                            </div>
+                            <a href="tool-details.html?id=tool1" class="c-card__link" aria-label="View Tool1 details"></a>
+                        </article>
+                    </div>
+
+                    <div class="c-tool-carousel__item c-tool-carousel__item--featured">
+                        <article class="c-card c-card--featured">
+                            <h3 class="c-card__title">Name</h3>
+                            <div class="c-card__snippet" role="region" aria-label="Tool code fragment">
+                                <pre><code class="c-card__code">Code snippet</code></pre>
+                            </div>
+                            <div class="c-card__tags">
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                            </div>
+                            <a href="tool-details.html?id=tool2" class="c-card__link" aria-label="View Tool2 details"></a>
+                        </article>
+                    </div>
+
+                    <div class="c-tool-carousel__item">
+                        <article class="c-card">
+                            <h3 class="c-card__title">Name</h3>
+                            <div class="c-card__snippet" role="region" aria-label="Tool code fragment">
+                                <pre><code class="c-card__code">Code snippet</code></pre>
+                            </div>
+                            <div class="c-card__tags">
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                                <span class="c-tag">Tag1</span>
+                            </div>
+                            <a href="tool-details.html?id=tool3" class="c-card__link" aria-label="View Tool3 details"></a>
+                        </article>
+                    </div>
+                </div>
+
+                <button class="c-tool-carousel__nav c-tool-carousel__nav--right" aria-label="Next tool">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p>&copy; 2025 Dev Tools Showcase | 
+            <a href="https://github.com/olegbb1502/web-template-2025" aria-label="Go to GitHub repository">
+                <i class="fab fa-github"></i> @github
+            </a>
+        </p>
+      </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+$breakpoints: (
+    'sm': $bp-tablet,
+    'md': $bp-desktop,
+    'lg': 1440px
+);
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @error "Unknown breakpoint: `#{$breakpoint}`. Available: #{map-keys($breakpoints)}.";
+    }
+}
+
+@mixin only-mobile {
+    @media (max-width: ($bp-tablet - 0.02)) { 
+        @content;
+    }
+}
+
+@mixin flex-layout($justify: flex-start, $align: stretch, $direction: row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@mixin site-container {
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    width: 100%;
+}
+
+@mixin text-style($size, $weight: 400, $height: 1.5, $color: $color-text) {
+    font-size: rem($size);
+    font-weight: $weight;
+    line-height: $height;
+    color: $color;
+}
+
+@mixin transition-default($property: all, $duration: 0.3s, $timing: ease-in-out) {
+    transition: $property $duration $timing;
+}
+
+@mixin absolute-center-y {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

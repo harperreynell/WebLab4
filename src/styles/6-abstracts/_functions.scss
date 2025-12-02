@@ -1,0 +1,15 @@
+@function rem($px) {
+    @if unitless($px) {
+        $px: $px * 1px;
+    }
+    
+    @return #{$px / $font-size-base}rem;
+}
+
+@function tint($color, $percentage) {
+    @return mix(#fff, $color, $percentage); 
+}
+
+@function shade($color, $percentage) {
+    @return mix(#000, $color, $percentage); 
+}

@@ -1,0 +1,37 @@
+.l-container {
+    @include site-container;
+}
+
+.l-header-container {
+    @include site-container;
+    @include flex-layout(space-between, center);
+    padding-top: rem(24);
+    padding-bottom: rem(24);
+}
+
+.c-logo {
+    
+    &__link {
+        @include flex-layout(flex-start, center);
+        gap: rem(12);
+        color: $color-text;
+        text-decoration: none;
+    }
+
+    &__img {
+        height: rem(100);
+        width: auto;
+        display: block;
+    }
+
+    &__text {
+        @include text-style(20, 700);
+        text-transform: capitalize; 
+        
+        line-height: 1.0; 
+
+        @include only-mobile {
+            @include text-style(18, 600);
+        }
+    }
+}

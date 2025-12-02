@@ -1,0 +1,26 @@
+.c-about-page {
+    max-width: rem(800); 
+    margin: 0 auto;
+    text-align: center;
+    padding-top: rem(80);
+    padding-bottom: rem(40); 
+    
+    &__title {
+        @include text-style(36, 700);
+        margin-bottom: rem(40);
+    }
+
+    &__content {
+        @include text-style(18, 400, 1.6, $color-text-secondary);
+        margin-bottom: rem(40);
+
+        p {
+            margin-bottom: rem(20);
+        }
+    }
+
+    .c-button {
+        @include text-style(18, 600, 1);
+        padding: rem(15) rem(30);
+    }
+}

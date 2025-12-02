@@ -1,0 +1,83 @@
+.c-sidebar {
+    &__title {
+        @include text-style(20, 700);
+        margin-bottom: rem(20);
+    }
+}
+
+.c-search-form {
+    margin-bottom: rem(30);
+    
+    &__label {
+        @include text-style(14, 500, 1.2, $color-text-secondary);
+        display: block;
+        margin-bottom: rem(8);
+    }
+    
+    .c-search-input-group {
+        @include flex-layout(flex-start, center);
+        border: 1px solid $color-border;
+        border-radius: rem(8);
+        padding: rem(5);
+        background-color: shade($color-surface, 5%);
+    }
+
+    &__input {
+        flex-grow: 1;
+        padding: rem(8) rem(12);
+        border: none;
+        background: transparent;
+        color: $color-text;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+    
+    &__button {
+        padding: rem(5);
+        background: transparent;
+        border: none;
+        color: $color-text-secondary;
+        cursor: pointer;
+        
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
+
+.c-category-nav {
+    &__list {
+        list-style: none;
+    }
+    
+    &__item {
+        margin-bottom: rem(10);
+    }
+    
+    &__link {
+        @include text-style(16, 500, 1.2, $color-text);
+        padding: rem(5) 0;
+        
+        &:hover {
+            color: $color-primary;
+            padding-left: rem(5);
+        }
+    }
+}
+
+.c-stats {
+    background-color: shade($color-surface, 5%);
+    border-radius: rem(8);
+    padding: rem(16);
+    margin-bottom: rem(30);
+    
+    p {
+        @include text-style(14, 400, 1.4, $color-text-secondary);
+    }
+    
+    b {
+        color: $color-primary;
+    }
+}

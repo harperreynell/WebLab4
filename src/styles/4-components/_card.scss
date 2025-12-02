@@ -1,0 +1,78 @@
+.c-card {
+    position: relative;
+    background-color: $color-surface;
+    border-radius: rem(12);
+    padding: rem(16);
+    @include transition-default(box-shadow);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        transform: translateY(-2px);
+    }
+
+    &__title {
+        @include text-style(18, 600); 
+        margin-bottom: rem(12);
+        
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; 
+        -webkit-box-orient: vertical;
+        white-space: normal; 
+    }
+    
+    &__snippet {
+        background-color: shade($color-surface, 10%);
+        padding: rem(10); 
+        border-radius: rem(8);
+        
+        overflow: hidden;
+        margin-bottom: rem(12);
+        
+        min-height: rem(120); 
+        flex-grow: 1; 
+    }
+
+    &__code {
+        @include text-style(13, 400, 1.4, $color-text-secondary); 
+        font-family: monospace;
+        text-align: left; 
+        display: block;
+        white-space: pre-wrap; 
+        
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; 
+        -webkit-box-orient: vertical;
+    }
+    
+    &__tags {
+        @include flex-layout(center, center); 
+        gap: rem(6);
+        margin-top: auto; 
+    }
+
+    &__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+}
+
+.c-tag {
+    background-color: $color-primary;
+    color: $color-dark;
+    padding: rem(3) rem(6); 
+    border-radius: rem(4);
+    @include text-style(11, 500, 1); 
+    z-index: 2; 
+}

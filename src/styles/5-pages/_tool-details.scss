@@ -1,0 +1,10 @@
+.c-tool-details-page {
+    .c-tool-details__title {
+        @include text-style(36, 700);
+        margin-bottom: rem(40);
+        
+        @include only-mobile {
+            @include text-style(28, 700);
+        }
+    }
+}

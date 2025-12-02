@@ -1,0 +1,43 @@
+.c-nav {
+    &__list {
+        @include flex-layout(center, center);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    &__item {
+        margin-left: rem(15);
+        
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    
+    &__link {
+        @include text-style(16, 600, 1.2, $color-text-secondary);
+        text-decoration: none;
+        padding: rem(5) rem(10);
+        position: relative;
+        @include transition-default(color);
+
+        &[aria-current="page"] {
+            color: $color-primary;
+            
+            &::after {
+                content: '';
+                display: block;
+                height: 2px;
+                background-color: $color-primary;
+                width: 100%;
+                position: absolute;
+                bottom: rem(-8);
+                left: 0;
+            }
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

@@ -1,0 +1,564 @@
+{
+  "tools": [
+    {
+      "id": "bubble-sort",
+      "name": "Bubble Sort Algorithm",
+      "tags": ["sort", "inefficient", "algorithm"],
+      "snippet": "function bubbleSort(arr) {\n    let n = arr.length;\n    for (let i = 0; i < n - 1; i++) {\n        for (let j = 0; j < n - i - 1; j++) {\n            if (arr[j] > arr[j + 1]) {\n                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n            }\n        }\n    }\n    return arr;\n}",
+      "usage": "Used primarily for educational purposes to demonstrate basic sorting concepts. Not recommended for production code due to O(n^2) complexity.",
+      "details": "A simple comparison-based sorting algorithm. It repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. Its best case is O(n) (already sorted).",
+      "github": "https://github.com/algorithms/bubblesort-js",
+      "rating": 3.5
+    },
+    {
+      "id": "quick-sort",
+      "name": "Quick Sort (Hoare Partition)",
+      "tags": ["sort", "efficient", "divide-and-conquer"],
+      "snippet": "function quickSort(arr, low, high) {\n    if (low < high) {\n        let pi = partition(arr, low, high);\n        quickSort(arr, low, pi - 1);\n        quickSort(arr, pi + 1, high);\n    }\n    return arr;\n}",
+      "usage": "One of the fastest sorting algorithms in practice. Widely used in programming languages and libraries for general-purpose sorting.",
+      "details": "A divide-and-conquer algorithm. It picks an element as pivot and partitions the array around the pivot. Average time complexity is O(n log n).",
+      "github": "https://github.com/algorithms/quicksort-js",
+      "rating": 4.8
+    },
+    {
+      "id": "debounce",
+      "name": "Debounce Function",
+      "tags": ["js", "performance", "timing"],
+      "snippet": "function debounce(func, delay) {\n    let timeout;\n    return function() {\n        const context = this;\n        const args = arguments;\n        clearTimeout(timeout);\n        timeout = setTimeout(() => func.apply(context, args), delay);\n    };\n}",
+      "usage": "Essential for limiting the rate at which a function is called, often used for search box input events, window resizing, and scrolling to prevent performance issues.",
+      "details": "Ensures that a function is executed only after a specific time (delay) has passed since the last time it was invoked. This avoids excessive executions during rapid user input.",
+      "github": "https://github.com/js-utils/debounce-throttle",
+      "rating": 4.5
+    },
+    {
+      "id": "throttle",
+      "name": "Throttle Function",
+      "tags": ["js", "performance", "timing"],
+      "snippet": "function throttle(func, delay) {\n    let wait = false;\n    return function(...args) {\n        if (wait) return;\n        func.apply(this, args);\n        wait = true;\n        setTimeout(() => {\n            wait = false;\n        }, delay);\n    };\n}",
+      "usage": "Used to limit the rate of execution of a function over time, typically used for events that fire continuously, like scrolling or mouse movement.",
+      "details": "Ensures a function is called at most once every specified period (delay). Unlike debounce, it guarantees execution at a regular interval.",
+      "github": "https://github.com/js-utils/debounce-throttle",
+      "rating": 4.6
+    },
+    {
+      "id": "memoize",
+      "name": "Memoization Helper",
+      "tags": ["js", "cache", "functional"],
+      "snippet": "function memoize(func) {\n    const cache = {};\n    return function(...args) {\n        const key = JSON.stringify(args);\n        if (cache[key]) {\n            return cache[key];\n        }\n        const result = func.apply(this, args);\n        cache[key] = result;\n        return result;\n    };\n}",
+      "usage": "Applied to computationally expensive functions to cache results based on input arguments, significantly speeding up subsequent calls with the same input.",
+      "details": "An optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.",
+      "github": "https://github.com/js-utils/memoize",
+      "rating": 4.7
+    },
+    {
+      "id": "proxy",
+      "name": "Proxy Usage Example",
+      "tags": ["js", "es6", "advanced"],
+      "snippet": "const handler = {\n    get: (target, property) => {\n        if (property === 'version') return '1.0.1';\n        return target[property];\n    }\n};\n\nconst p = new Proxy({}, handler);",
+      "usage": "Used to intercept and customize operations for objects, such as property lookup, assignment, enumeration, function invocation, etc. Fundamental in reactive frameworks.",
+      "details": "The `Proxy` object is used to create a proxy for another object, which can intercept and redefine fundamental operations for that object.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+      "rating": 4.2
+    },
+    {
+      "id": "generator",
+      "name": "Generator Function",
+      "tags": ["js", "es6", "async"],
+      "snippet": "function* generator() {\n    yield 1;\n    yield 2;\n    yield 3;\n}\n\nconst gen = generator();\nconsole.log(gen.next().value);",
+      "usage": "Used to create iterators, enabling functions to pause and resume execution, and to work with asynchronous patterns in a more synchronous-looking way.",
+      "details": "A function that can be exited and re-entered later. Its context (variable bindings) is saved across re-entrances. Declared using `function*`.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+      "rating": 4.0
+    },
+    {
+      "id": "promise",
+      "name": "Promise Implementation",
+      "tags": ["js", "async", "fundamentals"],
+      "snippet": "new Promise((resolve, reject) => {\n    // Asynchronous operation here\n    if (success) {\n        resolve('Data');\n    } else {\n        reject('Error');\n    }\n});\n\npromise.then(data => console.log(data));",
+      "usage": "Fundamental to modern JavaScript for handling asynchronous operations like API calls, timers, and file reading, ensuring callbacks are executed in a predictable order.",
+      "details": "A Promise is an object representing the eventual completion or failure of an asynchronous operation. It has three states: pending, fulfilled, and rejected.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "rating": 4.9
+    },
+    {
+      "id": "regex-email",
+      "name": "Regex Email Validator",
+      "tags": ["validator", "regex", "form"],
+      "snippet": "const emailRegex = /^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$/;\n\nif (emailRegex.test(email)) { /* valid */ }",
+      "usage": "Used for client-side form validation to quickly check if an input string matches the general structure of an email address before sending data to the server.",
+      "details": "A regular expression that checks for alphanumeric characters, optional dots/underscores, the '@' symbol, a domain, and a top-level domain.",
+      "github": "https://regex101.com/",
+      "rating": 3.9
+    },
+    {
+      "id": "factorial-recursion",
+      "name": "Factorial (Recursive)",
+      "tags": ["math", "recursion", "algorithm"],
+      "snippet": "function factorial(n) {\n    if (n === 0) {\n        return 1;\n    }\n    return n * factorial(n - 1);\n}",
+      "usage": "Calculates the factorial of a number. Demonstrates the power and potential pitfalls of recursive function calls.",
+      "details": "A function that calls itself until a base case (n=0) is met. Simple to read, but can lead to stack overflow errors with large inputs.",
+      "github": "https://github.com/algorithms/recursion",
+      "rating": 4.1
+    },
+    {
+      "id": "fibonacci-iterative",
+      "name": "Fibonacci (Iterative)",
+      "tags": ["math", "loop", "algorithm"],
+      "snippet": "function fibonacci(n) {\n    let a = 0, b = 1, temp;\n    for (let i = 2; i <= n; i++) {\n        temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return b;\n}",
+      "usage": "Calculates the N-th Fibonacci number. Highly efficient iterative approach compared to the basic recursive method.",
+      "details": "The sequence starts with 0 and 1, and each subsequent number is the sum of the previous two. The iterative approach is O(n).",
+      "github": "https://github.com/algorithms/fibonacci",
+      "rating": 4.4
+    },
+    {
+      "id": "two-sum",
+      "name": "Two Sum (Hash Map)",
+      "tags": ["array", "hash-map", "interview"],
+      "snippet": "function twoSum(nums, target) {\n    const map = new Map();\n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        if (map.has(complement)) {\n            return [map.get(complement), i];\n        }\n        map.set(nums[i], i);\n    }\n}",
+      "usage": "A common interview question solution. Quickly finds two numbers in an array that sum up to a specific target.",
+      "details": "Achieves O(n) time complexity by using a Map (hash table) to store the complement of each number encountered during a single pass of the array.",
+      "github": "https://leetcode.com/problems/two-sum/",
+      "rating": 4.9
+    },
+    {
+      "id": "deep-clone",
+      "name": "Deep Clone Object",
+      "tags": ["object", "clone", "utility"],
+      "snippet": "function deepClone(obj) {\n    if (obj === null || typeof obj !== 'object') {\n        return obj;\n    }\n    return JSON.parse(JSON.stringify(obj));\n}",
+      "usage": "Creates a copy of an object or array, ensuring that nested objects/arrays are also copied, preventing unintended side effects.",
+      "details": "Uses JSON serialization/deserialization for a simple, fast deep clone, though it fails on functions, Symbols, and complex objects like Date/RegExp.",
+      "github": "https://github.com/js-utils/clone",
+      "rating": 4.3
+    },
+    {
+      "id": "date-formatter",
+      "name": "Simple Date Formatter",
+      "tags": ["date", "utility", "string"],
+      "snippet": "function formatDate(date) {\n    const y = date.getFullYear();\n    const m = String(date.getMonth() + 1).padStart(2, '0');\n    const d = String(date.getDate()).padStart(2, '0');\n    return `${y}-${m}-${d}`;\n}",
+      "usage": "Converts a JavaScript Date object into a standard 'YYYY-MM-DD' string format, essential for API requests or consistent display.",
+      "details": "Uses `padStart` to ensure single-digit months and days are zero-padded (e.g., '01' instead of '1').",
+      "github": "https://github.com/js-utils/date",
+      "rating": 3.7
+    },
+    {
+      "id": "class-toggle",
+      "name": "Class Toggle Utility",
+      "tags": ["dom", "utility", "css"],
+      "snippet": "function toggleClass(el, className) {\n    if (el.classList.contains(className)) {\n        el.classList.remove(className);\n    } else {\n        el.classList.add(className);\n    }\n}",
+      "usage": "A simple function to toggle a CSS class on an HTML element, useful for mobile menu activation or theme switching.",
+      "details": "A basic wrapper around the DOM `classList` API, which is now natively well-supported in modern browsers.",
+      "github": "https://github.com/dom-utils/class-toggle",
+      "rating": 3.4
+    },
+    {
+      "id": "ajax-get",
+      "name": "Basic AJAX GET Request",
+      "tags": ["api", "async", "xhr"],
+      "snippet": "function ajaxGet(url, callback) {\n    const xhr = new XMLHttpRequest();\n    xhr.open('GET', url);\n    xhr.onload = () => {\n        if (xhr.status === 200) {\n            callback(JSON.parse(xhr.responseText));\n        }\n    };\n    xhr.send();\n}",
+      "usage": "Demonstrates the foundational way to make API calls using the raw `XMLHttpRequest` object, fundamental for understanding `fetch`.",
+      "details": "The XMLHttpRequest (XHR) object is used to interact with servers. It can retrieve data from a URL without a full page refresh.",
+      "github": "https://github.com/js-utils/ajax",
+      "rating": 3.6
+    },
+    {
+      "id": "check-empty",
+      "name": "Check Object Empty",
+      "tags": ["object", "validation", "utility"],
+      "snippet": "function isObjectEmpty(obj) {\n    return Object.keys(obj).length === 0 && obj.constructor === Object;\n}",
+      "usage": "Verifies if a plain JavaScript object has any enumerable properties, often used in validation or state checking.",
+      "details": "Uses `Object.keys()` to get an array of property names and checks if its length is zero. Also checks constructor to ensure it's a plain object.",
+      "github": "https://github.com/js-utils/validation",
+      "rating": 3.8
+    },
+    {
+      "id": "url-params-parser",
+      "name": "URL Params Parser",
+      "tags": ["url", "utility", "browser"],
+      "snippet": "function getQueryParams() {\n    return new URLSearchParams(window.location.search);\n}\n\nconst params = getQueryParams();",
+      "usage": "Retrieves and parses query parameters from the current URL, simplifying the process of reading state from the address bar.",
+      "details": "Leverages the native `URLSearchParams` API, which is standardized and highly efficient for working with query strings.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams",
+      "rating": 4.5
+    },
+    {
+      "id": "localstorage-wrapper",
+      "name": "LocalStorage Wrapper",
+      "tags": ["storage", "utility", "browser"],
+      "snippet": "const ls = {\n    set: (key, value) => localStorage.setItem(key, JSON.stringify(value)),\n    get: (key) => JSON.parse(localStorage.getItem(key))\n};",
+      "usage": "Provides a robust way to store JavaScript objects in localStorage by automatically handling JSON serialization and deserialization.",
+      "details": "Avoids repetitive `JSON.stringify` and `JSON.parse` calls in the application code, making local storage usage cleaner.",
+      "github": "https://github.com/js-utils/localstorage",
+      "rating": 4.1
+    },
+    {
+      "id": "sort-by-key",
+      "name": "Sort Array by Key",
+      "tags": ["array", "utility", "sort"],
+      "snippet": "function sortByKey(arr, key) {\n    return arr.sort((a, b) => {\n        if (a[key] < b[key]) return -1;\n        if (a[key] > b[key]) return 1;\n        return 0;\n    });\n}",
+      "usage": "A simple array utility to sort an array of objects based on the value of a specific property (key).",
+      "details": "Uses the native `Array.prototype.sort` with a custom comparison function for string keys.",
+      "github": "https://github.com/js-utils/sort",
+      "rating": 3.9
+    },
+    {
+      "id": "vdom-render",
+      "name": "Basic VDOM Renderer",
+      "tags": ["vdom", "react", "frontend"],
+      "snippet": "// Simple VNode structure\nconst VNode = (tag, props, children) => ({\n    tag, props, children\n});\n\n// Basic render function\nconst render = (vnode) => {\n    const el = document.createElement(vnode.tag);\n    // ... apply props and children\n    return el;\n};",
+      "usage": "Illustrates the core concepts of Virtual DOM creation and rendering, often used as an educational snippet.",
+      "details": "Virtual DOM is a programming concept where a virtual representation of a UI is kept in memory and synced with the 'real' DOM.",
+      "github": "https://github.com/frontend/vdom-basic",
+      "rating": 4.7
+    },
+    {
+      "id": "pubsub",
+      "name": "Publish-Subscribe Pattern",
+      "tags": ["design-pattern", "events", "communication"],
+      "snippet": "const pubsub = {\n    events: {},\n    subscribe: (event, callback) => {\n        if (!this.events[event]) this.events[event] = [];\n        this.events[event].push(callback);\n    },\n    publish: (event, data) => {\n        if (this.events[event]) {\n            this.events[event].forEach(callback => callback(data));\n        }\n    }\n};",
+      "usage": "Decouples components by allowing them to communicate without direct dependencies. Ideal for large, event-driven applications.",
+      "details": "A messaging pattern where senders (publishers) do not send messages directly to specific receivers (subscribers), but rather categorize published messages into classes.",
+      "github": "https://github.com/js-utils/patterns",
+      "rating": 4.5
+    },
+    {
+      "id": "observer",
+      "name": "Observer Pattern (Basic)",
+      "tags": ["design-pattern", "events", "state"],
+      "snippet": "class Observable {\n    constructor() { this.observers = []; }\n    subscribe(f) { this.observers.push(f); }\n    unsubscribe(f) { this.observers = this.observers.filter(o => o !== f); }\n    notify(data) { this.observers.forEach(o => o(data)); }\n}",
+      "usage": "Used for state management where changes to an object's state are broadcast to all dependent objects (observers).",
+      "details": "A software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes.",
+      "github": "https://github.com/js-utils/patterns",
+      "rating": 4.3
+    },
+    {
+      "id": "modal-toggle",
+      "name": "Simple Modal Toggle",
+      "tags": ["dom", "ui", "accessibility"],
+      "snippet": "function toggleModal(id) {\n    const modal = document.getElementById(id);\n    const body = document.body;\n    \n    if (modal.classList.toggle('is-open')) {\n        body.style.overflow = 'hidden';\n        modal.setAttribute('aria-modal', 'true');\n    } else {\n        body.style.overflow = '';\n        modal.removeAttribute('aria-modal');\n    }\n}",
+      "usage": "Provides basic logic for opening and closing a modal window, including essential accessibility and scroll-locking fixes.",
+      "details": "Uses the `aria-modal` attribute for accessibility and manipulates `body.style.overflow` to prevent background scrolling when the modal is active.",
+      "github": "https://github.com/dom-utils/modal",
+      "rating": 4.6
+    },
+    {
+      "id": "css-grid-template",
+      "name": "CSS Grid Template (2-col)",
+      "tags": ["css", "layout", "grid"],
+      "snippet": ".container {\n    display: grid;\n    grid-template-columns: 1fr 2fr; /* 1:2 ratio */\n    gap: 20px;\n}\n\n.sidebar { grid-column: 1; }\n.content { grid-column: 2; }",
+      "usage": "A foundational CSS snippet for creating flexible two-column layouts using modern CSS Grid.",
+      "details": "Uses the `fr` unit (fractional unit) to define flexible track sizes, distributing available space after subtracting fixed gaps (`gap`).",
+      "github": "https://github.com/css-layouts/grid",
+      "rating": 4.4
+    },
+    {
+      "id": "css-flex-center",
+      "name": "CSS Flex Center Item",
+      "tags": ["css", "layout", "flexbox"],
+      "snippet": ".container {\n    display: flex;\n    justify-content: center; /* horizontal */\n    align-items: center; /* vertical */\n    height: 100vh;\n}",
+      "usage": "The canonical solution for centering a single block element perfectly both horizontally and vertically within its parent container.",
+      "details": "Relies entirely on Flexbox properties, making it simpler and more robust than older centering methods (like using `margin: auto` with absolute positioning).",
+      "github": "https://github.com/css-layouts/flexbox",
+      "rating": 4.9
+    },
+    {
+      "id": "event-delegation",
+      "name": "Event Delegation",
+      "tags": ["dom", "performance", "events"],
+      "snippet": "document.getElementById('parent-list')\n    .addEventListener('click', function(e) {\n        if (e.target.matches('.child-item')) {\n            console.log('Clicked:', e.target.textContent);\n        }\n    });",
+      "usage": "Improves performance and reduces memory usage by attaching a single event listener to a parent element instead of multiple listeners to many child elements.",
+      "details": "The pattern works because events bubble up the DOM tree. The parent listener checks the `e.target` property to identify the source of the event.",
+      "github": "https://github.com/dom-utils/events",
+      "rating": 4.7
+    },
+    {
+      "id": "closure-counter",
+      "name": "Closure Counter",
+      "tags": ["js", "closure", "functional"],
+      "snippet": "function createCounter() {\n    let count = 0;\n    return {\n        increment: () => { count++; return count; },\n        decrement: () => { count--; return count; }\n    };\n}\n\nconst counter = createCounter();",
+      "usage": "Demonstrates how JavaScript closures can be used to create private variables (`count`) that are only accessible via privileged methods.",
+      "details": "A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).",
+      "github": "https://github.com/js-utils/patterns",
+      "rating": 4.1
+    },
+    {
+      "id": "array-flatten",
+      "name": "Array Flatten Deep",
+      "tags": ["array", "es2019", "utility"],
+      "snippet": "const nested = [1, [2, [3, 4]], 5];\nconst flat = nested.flat(Infinity); // [1, 2, 3, 4, 5]",
+      "usage": "Converts a multi-dimensional array into a one-dimensional array, essential for processing complex nested data structures.",
+      "details": "Uses the modern `Array.prototype.flat()` method. Passing `Infinity` as the depth ensures that all levels of nesting are flattened.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat",
+      "rating": 4.6
+    },
+    {
+      "id": "async-await-try",
+      "name": "Async/Await with Try/Catch",
+      "tags": ["js", "async", "error-handling"],
+      "snippet": "async function fetchData(url) {\n    try {\n        const response = await fetch(url);\n        if (!response.ok) throw new Error('Network error');\n        const data = await response.json();\n        return data;\n    } catch (error) {\n        console.error('Fetch failed:', error);\n        return null;\n    }\n}",
+      "usage": "The standard modern pattern for handling asynchronous operations in JavaScript, ensuring robust error handling using familiar `try...catch` blocks.",
+      "details": "The `await` keyword pauses execution until the promise resolves. The `try...catch` block gracefully catches network errors or parsing errors.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+      "rating": 5.0
+    },
+    {
+      "id": "singleton-pattern",
+      "name": "Singleton Pattern",
+      "tags": ["design-pattern", "oop", "class"],
+      "snippet": "class Singleton {\n    constructor() {\n        if (Singleton.instance) {\n            return Singleton.instance;\n        }\n        Singleton.instance = this;\n    }\n}\n\nconst instance = new Singleton();",
+      "usage": "Ensures a class has only one instance and provides a global point of access to it. Ideal for configuration managers, loggers, or service workers.",
+      "details": "The pattern prevents external creation of multiple instances and checks for an existing static instance upon instantiation.",
+      "github": "https://github.com/js-utils/patterns",
+      "rating": 4.2
+    },
+    {
+      "id": "binary-search",
+      "name": "Binary Search (Iterative)",
+      "tags": ["search", "efficient", "algorithm"],
+      "snippet": "function binarySearch(arr, target) {\n    let low = 0;\n    let high = arr.length - 1;\n\n    while (low <= high) {\n        const mid = Math.floor((low + high) / 2);\n        if (arr[mid] === target) return mid;\n        if (arr[mid] < target) {\n            low = mid + 1;\n        } else {\n            high = mid - 1;\n        }\n    }\n    return -1;\n}",
+      "usage": "Quickly finds the position of a target value within a sorted array. Requires the input array to be sorted.",
+      "details": "Time complexity is O(log n). It works by repeatedly dividing the search interval in half. Extremely fast for large, sorted datasets.",
+      "github": "https://github.com/algorithms/binary-search",
+      "rating": 4.7
+    },
+    {
+      "id": "merge-sort",
+      "name": "Merge Sort Algorithm",
+      "tags": ["sort", "divide-and-conquer", "algorithm"],
+      "snippet": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    const mid = Math.floor(arr.length / 2);\n    const left = mergeSort(arr.slice(0, mid));\n    const right = mergeSort(arr.slice(mid));\n    // ... logic to merge left and right\n    return merge(left, right);\n}",
+      "usage": "A stable sorting algorithm often preferred for sorting linked lists or when stability is required. Guaranteed O(n log n) performance.",
+      "details": "A stable sorting algorithm that splits the array into halves until single elements remain, then merges those halves back together in sorted order. Time complexity is O(n log n) in all cases.",
+      "github": "https://github.com/algorithms/merge-sort",
+      "rating": 4.6
+    },
+    {
+      "id": "css-clamp",
+      "name": "CSS Clamp Function",
+      "tags": ["css", "responsive", "typography"],
+      "snippet": "h1 {\n    font-size: clamp(2rem, 5vw + 1rem, 4rem);\n}",
+      "usage": "A modern CSS function that allows a property value to be dynamically scaled between a minimum and maximum size based on the viewport width.",
+      "details": "The `clamp()` function takes three values: minimum size, preferred size (scaling), and maximum size. It ensures typography remains legible and responsive.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp",
+      "rating": 4.5
+    },
+    {
+      "id": "intersection-observer",
+      "name": "Intersection Observer",
+      "tags": ["js", "performance", "async"],
+      "snippet": "const observer = new IntersectionObserver(entries => {\n    entries.forEach(entry => {\n        if (entry.isIntersecting) {\n            // Load content here\n        }\n    });\n});\nobserver.observe(targetElement);",
+      "usage": "Asynchronously monitors the intersection of a target element with an ancestor element or with the viewport. Ideal for lazy loading images or infinite scrolling.",
+      "details": "A powerful API that is highly efficient for detecting when an element becomes visible, avoiding the performance cost of continuous scroll event listeners.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API",
+      "rating": 4.9
+    },
+    {
+      "id": "web-worker",
+      "name": "Web Worker Basic",
+      "tags": ["js", "performance", "multithread"],
+      "snippet": "const worker = new Worker('worker.js');\nworker.onmessage = (e) => console.log(e.data);\nworker.postMessage('Start calculation');\n\n// worker.js:\n// self.onmessage = (e) => self.postMessage('Result');",
+      "usage": "Runs scripts in background threads, isolating them from the main execution thread. Essential for executing CPU-intensive tasks without freezing the UI.",
+      "details": "Workers communicate with the main thread via messages. They do not have access to the DOM or the window object.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API",
+      "rating": 4.6
+    },
+    {
+      "id": "try-catch-final",
+      "name": "Try/Catch/Finally",
+      "tags": ["js", "error-handling", "control-flow"],
+      "snippet": "try {\n    // Code that might throw an error\n} catch (error) {\n    console.error(error);\n} finally {\n    // Cleanup code always executed\n    closeConnection();\n}",
+      "usage": "The standard method for implementing robust error handling in synchronous and asynchronous code blocks in JavaScript.",
+      "details": "The `finally` block is executed regardless of whether an exception was thrown or caught, making it perfect for cleanup operations.",
+      "github": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch",
+      "rating": 4.0
+    },
+    {
+      "id": "localstorage-remove",
+      "name": "LocalStorage Remove Item",
+      "tags": ["storage", "utility", "browser"],
+      "snippet": "localStorage.removeItem('keyName');",
+      "usage": "Removes a specific key and its corresponding value from the browser's local storage, often used after user logout or form submission.",
+      "details": "The data remains in storage until explicitly removed or the browser data is cleared. This method removes only a single item.",
+      "rating": 3.3
+    },
+    {
+      "id": "js-set",
+      "name": "JavaScript Set (Unique Array)",
+      "tags": ["js", "data-structure", "es6"],
+      "snippet": "const unique = new Set([1, 2, 2, 3]);\nconst array = [...unique]; // [1, 2, 3]",
+      "usage": "Quickly creates a list of unique values from an array by leveraging the Set data structure.",
+      "details": "A Set is a collection of unique values. Values in a Set can only occur once; it is primarily used to remove duplicates from arrays.",
+      "rating": 4.3
+    },
+    {
+      "id": "promise-all",
+      "name": "Promise.all",
+      "tags": ["js", "async", "promises"],
+      "snippet": "Promise.all([\n    fetch(url1),\n    fetch(url2)\n]).then(results => {\n    // Runs only after both fetches succeed\n});",
+      "usage": "Runs multiple asynchronous operations concurrently and waits for ALL of them to successfully complete before continuing.",
+      "details": "If any of the promises passed to `Promise.all` fails, it immediately rejects with the reason of the first promise that rejected.",
+      "rating": 4.9
+    },
+    {
+      "id": "css-variables",
+      "name": "CSS Variables (Custom Properties)",
+      "tags": ["css", "theme", "variables"],
+      "snippet": ":root {\n    --primary-color: #58a6ff;\n}\n\n.button {\n    background-color: var(--primary-color);\n}",
+      "usage": "Defines reusable custom properties that can be accessed and modified by JavaScript and media queries, essential for theming and design systems.",
+      "details": "CSS Custom Properties provide a powerful way to manage styles globally, similar to variables in preprocessors but accessible at runtime.",
+      "rating": 4.7
+    },
+    {
+      "id": "media-query-mixin",
+      "name": "SCSS Media Query Mixin",
+      "tags": ["scss", "responsive", "mixin"],
+      "snippet": "@mixin desktop {\n    @media (min-width: 1024px) {\n        @content;\n    }\n}\n\n.element {\n    @include desktop {\n        width: 50%;\n    }\n}",
+      "usage": "Creates reusable blocks of CSS for specific screen sizes, making responsive code cleaner and preventing repetition of media queries.",
+      "details": "The `@content` keyword allows the mixin to accept and output a block of styles inside the media query.",
+      "rating": 4.5
+    },
+    {
+      "id": "debounce-react",
+      "name": "React Debounce Hook",
+      "tags": ["react", "hook", "performance"],
+      "snippet": "function useDebounce(value, delay) {\n    const [debouncedValue, setDebouncedValue] = useState(value);\n\n    useEffect(() => {\n        const handler = setTimeout(() => { setDebouncedValue(value); }, delay);\n        return () => { clearTimeout(handler); };\n    }, [value, delay]);\n\n    return debouncedValue;\n}",
+      "usage": "A custom React hook that debounces an input value, often used to delay searching until a user stops typing, reducing unnecessary re-renders.",
+      "details": "Uses `useEffect` and `setTimeout` to manage the timing, clearing the previous timer on each re-render (`return () => ...`).",
+      "rating": 4.8
+    },
+    {
+      "id": "zustand-store",
+      "name": "Zustand Simple Store",
+      "tags": ["zustand", "react", "state-management"],
+      "snippet": "import create from 'zustand';\n\nconst useStore = create(set => ({\n    bears: 0,\n    increase: () => set(state => ({ bears: state.bears + 1 })),\n}));\n\nfunction BearCounter() { /* ... */ }",
+      "usage": "Creates a minimal, fast, and scalable state management solution for React applications, often as a simpler alternative to Redux or Context.",
+      "details": "Zustand uses hooks to manage state outside of React components, simplifying global state handling.",
+      "rating": 4.7
+    },
+    {
+      "id": "tailwind-config",
+      "name": "Tailwind Custom Colors",
+      "tags": ["tailwind", "css", "config"],
+      "snippet": "module.exports = {\n    theme: {\n        extend: {\n            colors: {\n                'primary': '#58a6ff',\n                'surface': '#1e1e1e',\n            },\n        },\n    },\n    // ...\n};",
+      "usage": "Extends the default Tailwind CSS configuration to include custom colors, fonts, or spacing that match a specific design system.",
+      "details": "The `extend` block ensures that custom properties are added alongside Tailwind's default utility classes, avoiding overriding existing functionality.",
+      "rating": 4.5
+    },
+    {
+      "id": "react-useeffect",
+      "name": "React useEffect Cleanup",
+      "tags": ["react", "hook", "lifecycle"],
+      "snippet": "useEffect(() => {\n    const subscription = subscribeToEvents();\n    \n    return () => {\n        // Cleanup function runs on unmount or re-render\n        subscription.unsubscribe();\n    };\n}, [dependency]);",
+      "usage": "The standard pattern in React for performing side effects (like data fetching, subscriptions, manual DOM changes) and cleaning up those effects.",
+      "details": "The function returned by `useEffect` is the cleanup function, which prevents memory leaks by cleaning up resources when the component unmounts or dependencies change.",
+      "rating": 4.6
+    },
+    {
+      "id": "ts-interface",
+      "name": "TypeScript Interface Example",
+      "tags": ["typescript", "interface", "types"],
+      "snippet": "interface Tool {\n    id: string;\n    name: string;\n    tags: string[];\n    rating: number;\n}\n\nfunction displayTool(tool: Tool) { /* ... */ }",
+      "usage": "Defines a contract for the shape of an object, providing type safety and improving code reliability in TypeScript projects.",
+      "details": "Interfaces in TypeScript are used to define types for objects, functions, and classes, allowing the compiler to catch type errors during development.",
+      "rating": 4.3
+    },
+    {
+      "id": "ts-utility-types",
+      "name": "TypeScript Utility Types",
+      "tags": ["typescript", "utility", "types"],
+      "snippet": "type ToolPreview = Pick<Tool, 'id' | 'name'>;\ntype ReadOnlyTool = Readonly<Tool>;",
+      "usage": "Leverages built-in utility types like `Pick`, `Omit`, and `Readonly` to create new types based on existing ones, common in API layer typing.",
+      "details": "Utility types help in type transformation and manipulation, greatly reducing the amount of manual type declaration needed.",
+      "rating": 4.4
+    },
+    {
+      "id": "sql-select",
+      "name": "SQL Select Query (Basic)",
+      "tags": ["sql", "database", "query"],
+      "snippet": "SELECT name, rating FROM tools\nWHERE tags LIKE '%sort%'\nORDER BY rating DESC\nLIMIT 10;",
+      "usage": "A basic, yet powerful SQL query for retrieving specific data columns, applying filters, sorting results, and limiting the output size.",
+      "details": "Uses `LIKE` for pattern matching (search/filter), `ORDER BY` for sorting, and `LIMIT` for pagination or top-N retrieval.",
+      "rating": 4.0
+    },
+    {
+      "id": "git-rebase",
+      "name": "Git Rebase Command",
+      "tags": ["git", "workflow", "version-control"],
+      "snippet": "git checkout feature/new-logic\ngit rebase main",
+      "usage": "Rewrites the commit history of the current branch onto another base branch, resulting in a clean, linear history. Used to incorporate changes from `main` without merge commits.",
+      "details": "It should be used carefully, especially on branches that have already been pushed and shared with other developers, as it changes history.",
+      "rating": 4.5
+    },
+    {
+      "id": "dockerfile-node",
+      "name": "Dockerfile (Node.js)",
+      "tags": ["docker", "devops", "nodejs"],
+      "snippet": "FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install --only=production\nCOPY . .\nCMD [\"node\", \"server.js\"]",
+      "usage": "Defines the steps to build a reproducible Docker image for a Node.js application, isolating the environment and ensuring consistent deployment.",
+      "details": "Uses a multi-stage build philosophy (implied here by copying dependencies first) and a minimal base image (`alpine`) for efficiency.",
+      "rating": 4.3
+    },
+    {
+      "id": "webpack-basic",
+      "name": "Webpack Basic Config",
+      "tags": ["webpack", "build-tool", "config"],
+      "snippet": "module.exports = {\n  entry: './src/index.js',\n  output: {\n    filename: 'bundle.js',\n    path: path.resolve(__dirname, 'dist'),\n  },\n  mode: 'development',\n};",
+      "usage": "The foundational configuration for bundling JavaScript modules, static assets, and other resources for browser deployment.",
+      "details": "Defines the entry point (`entry`), where to output the bundled code (`output`), and the environment (`mode`).",
+      "rating": 4.0
+    },
+    {
+      "id": "jest-test",
+      "name": "Jest Unit Test",
+      "tags": ["jest", "testing", "javascript"],
+      "snippet": "describe('MathUtils', () => {\n  test('adds 1 + 2 to equal 3', () => {\n    expect(sum(1, 2)).toBe(3);\n  });\n\n  test('should handle negatives', () => {\n    expect(sum(-1, 1)).toBe(0);\n  });\n});",
+      "usage": "A basic unit test structure using Jest, the most popular JavaScript testing framework, ensuring that functions behave as expected.",
+      "details": "Uses `describe` to group related tests and `test` (or `it`) to define individual test cases, relying on the `expect(value).toBe(expected)` assertion.",
+      "rating": 4.8
+    },
+    {
+      "id": "npm-script",
+      "name": "NPM Script (Parallel)",
+      "tags": ["npm", "cli", "utility"],
+      "snippet": "\"scripts\": {\n  \"start\": \"npm-run-all --parallel dev server\"\n}",
+      "usage": "Defines custom command line interfaces for the project, allowing complex tasks (like starting API and client simultaneously) to be run with a simple command.",
+      "details": "Uses `npm-run-all` (a utility package) to run multiple scripts (`dev` and `server`) concurrently, streamlining the development environment setup.",
+      "rating": 3.7
+    },
+    {
+      "id": "babel-config",
+      "name": "Babel Config (ES6+)",
+      "tags": ["babel", "config", "javascript"],
+      "snippet": "module.exports = {\n  presets: [\n    ['@babel/preset-env', {\n      targets: '> 0.25%, not dead',\n      useBuiltIns: 'usage',\n      corejs: 3\n    }]\n  ]\n};",
+      "usage": "Configures Babel to compile modern JavaScript (ES6+) into backward-compatible versions that can run on older browsers.",
+      "details": "Uses `@babel/preset-env` to intelligently determine the necessary transformations and polyfills based on the target browser environment (`targets`).",
+      "rating": 4.1
+    },
+    { "id": "array-map", "name": "Array Map Transformation", "tags": ["array", "functional", "es6"], "snippet": "const newArray = arr.map(item => item * 2);", "usage": "Applies a function to every element in an array and returns a new array containing the results, fundamental to functional programming.", "details": "The Map method does not mutate the original array and is used for transformations.", "rating": 4.0 },
+    { "id": "array-filter", "name": "Array Filter (Condition)", "tags": ["array", "functional", "es6"], "snippet": "const filtered = arr.filter(item => item.active);", "usage": "Creates a new array containing all elements that pass a test implemented by the provided function.", "details": "The Filter method is ideal for selecting a subset of elements based on a condition.", "rating": 4.1 },
+    { "id": "array-reduce", "name": "Array Reduce (Sum)", "tags": ["array", "functional", "es6"], "snippet": "const sum = arr.reduce((acc, curr) => acc + curr, 0);", "usage": "Executes a reducer function on each element of the array, resulting in a single output value (e.g., sum, count, total object).", "details": "The Reduce method is the most flexible array iteration method.", "rating": 4.2 },
+    { "id": "js-settimeout", "name": "setTimeout/ClearTimeout", "tags": ["js", "timing", "async"], "snippet": "let timer = setTimeout(() => { alert('Hello'); }, 1000);\nclearTimeout(timer);", "usage": "Executes a function once after waiting a specified number of milliseconds.", "details": "Returns a timer ID that can be used to cancel the execution with `clearTimeout`.", "rating": 3.8 },
+    { "id": "js-setinterval", "name": "setInterval/ClearInterval", "tags": ["js", "timing", "async"], "snippet": "let interval = setInterval(() => { console.log('Tick'); }, 2000);\nclearInterval(interval);", "usage": "Repeatedly executes a function or code snippet, with a fixed time delay between each call.", "details": "Returns a timer ID that can be used to stop the repeated execution with `clearInterval`.", "rating": 3.9 },
+    { "id": "css-minmax", "name": "CSS Minmax Function", "tags": ["css", "grid", "layout"], "snippet": "grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));", "usage": "Used within CSS Grid to define a flexible size range: columns will be at least 250px wide, but no wider than 1fr (equal share).", "details": "Essential for creating responsive grids where items adjust dynamically based on available space.", "rating": 4.6 },
+    { "id": "css-pseudo", "name": "CSS Pseudo Elements", "tags": ["css", "style", "utility"], "snippet": ".button::before {\n    content: \"\\2192\"; /* Arrow character */\n    margin-right: 5px;\n}", "usage": "Styles a specific part of an element without needing extra HTML. Commonly used for icons, generated text, or cosmetic overlays.", "details": "The `::before` and `::after` pseudo-elements create content before and after the element's content.", "rating": 4.1 },
+    { "id": "css-transition", "name": "CSS Transition", "tags": ["css", "animation", "ui"], "snippet": ".button {\n    transition: background-color 0.3s ease-in-out, transform 0.2s;\n}", "usage": "Smoothly animates changes to CSS properties over a specified duration, improving user experience by avoiding jarring visual updates.", "details": "It requires defining the property to animate, the duration, and the timing function.", "rating": 4.2 },
+    { "id": "css-keyframes", "name": "CSS Keyframes", "tags": ["css", "animation", "complex"], "snippet": "@keyframes fadeIn {\n    from { opacity: 0; }\n    to { opacity: 1; }\n}\n\n.element { animation: fadeIn 1s ease-out; }", "usage": "Defines the precise sequence of an animation using keyframes (specific points in time), allowing for complex, multi-step animations.", "details": "Unlike transitions, keyframes allow you to define multiple intermediate steps.", "rating": 4.5 },
+    { "id": "array-destruct", "name": "Array Destructuring", "tags": ["js", "es6", "syntax"], "snippet": "const [first, second, ...rest] = array;", "usage": "Pulls data out of an array and assigns it to named variables in a more concise and readable way.", "details": "A powerful feature that simplifies swapping variables and accessing elements by position.", "rating": 4.4 },
+    { "id": "object-destruct", "name": "Object Destructuring", "tags": ["js", "es6", "syntax"], "snippet": "const { name, rating: score } = tool;", "usage": "Pulls properties out of objects and assigns them to variables. Can also rename properties using a colon (`:`).", "details": "Used extensively in React/Vue for props and state management.", "rating": 4.5 },
+    { "id": "spread-merge", "name": "Spread Operator (Merge)", "tags": ["js", "es6", "utility"], "snippet": "const merged = { ...obj1, ...obj2, newProp: 1 };", "usage": "Copies properties from one or more objects into a new object, simplifying state updates or object merging.", "details": "The spread operator (`...`) creates a shallow copy of the object properties.",
+      "rating": 4.6 },
+    { "id": "ternary-operator", "name": "Ternary Operator", "tags": ["js", "syntax", "utility"], "snippet": "const status = isActive ? 'Active' : 'Inactive';", "usage": "A concise shorthand for an `if...else` statement, often used in JSX/templating for conditional rendering.", "details": "Syntax is `condition ? expressionIfTrue : expressionIfFalse`.", "rating": 3.9 },
+    { "id": "short-circuit", "name": "Short-Circuit Logical Op", "tags": ["js", "syntax", "utility"], "snippet": "const name = user.name || 'Guest';\n// Conditional rendering:\nuser.isAdmin && <Button />", "usage": "Uses logical operators (`||` or `&&`) to provide default values or conditionally render/execute code based on truthiness.", "details": "The `||` operator returns the first truthy value. The `&&` operator returns the second operand if the first is truthy.", "rating": 4.3 },
+    { "id": "map-data-structure", "name": "Map Data Structure", "tags": ["js", "data-structure", "es6"], "snippet": "const map = new Map();\nmap.set('key', 'value');\nmap.get('key');", "usage": "A collection of keyed data items, similar to an object, but allows keys of any type (not just strings or Symbols).", "details": "Used in the Two Sum solution and preferred over plain objects when non-string keys are required.", "rating": 4.4 },
+    { "id": "weakmap", "name": "WeakMap Data Structure", "tags": ["js", "data-structure", "memory"], "snippet": "const wm = new WeakMap();\nwm.set(obj1, 'metadata');\n// obj1 can be garbage collected if no other references exist", "usage": "Stores key/value pairs where the keys must be objects and are held weakly, preventing memory leaks if the key object is otherwise unused.", "details": "Keys in a WeakMap do not prevent garbage collection.", "rating": 4.1 },
+    { "id": "custom-event", "name": "Custom DOM Event", "tags": ["dom", "events", "communication"], "snippet": "const event = new CustomEvent('toolLoaded', { detail: { id: 1 } });\ndocument.dispatchEvent(event);\n// Listener:\ndocument.addEventListener('toolLoaded', handleEvent);",
+      "usage": "Creates and dispatches custom events across the DOM, allowing decoupled components to communicate without relying on global state or pub/sub libraries.",
+      "details": "Uses `CustomEvent` constructor to pass data via the `detail` property.", "rating": 4.6 },
+    { "id": "web-component-shadow", "name": "Web Component (Shadow DOM)", "tags": ["web-components", "dom", "encapsulation"], "snippet": "class MyComponent extends HTMLElement {\n    constructor() {\n        super();\n        const shadow = this.attachShadow({ mode: 'open' });\n        shadow.innerHTML = `<style>p{color:red;}</style><p>Hello</p>`;\n    }\n}", "usage": "Creates custom, reusable HTML elements with encapsulated styling and markup, preventing style leakage into the main document.", "details": "Shadow DOM provides strong encapsulation by attaching a separate DOM tree to an element.", "rating": 4.7 },
+    { "id": "css-aspect-ratio", "name": "CSS Aspect Ratio", "tags": ["css", "layout", "responsive"], "snippet": ".element { aspect-ratio: 16 / 9; }", "usage": "Ensures an element maintains a consistent width-to-height ratio as its parent container resizes, crucial for embedded media or consistent card sizes.", "details": "A modern CSS property that replaces older hacks like padding-top percentage tricks.", "rating": 4.5 },
+    { "id": "css-variables-js", "name": "CSS Variables via JS", "tags": ["css", "js", "dom"], "snippet": "document.documentElement.style.setProperty('--primary-color', 'red');", "usage": "Dynamically updates CSS variables (custom properties) in real-time using JavaScript, allowing for complex runtime theme switching or configuration.", "details": "Manipulates the `style` property of the root element (`:root`) or a specific element.", "rating": 4.4 },
+    { "id": "date-diff", "name": "Date Difference (Days)", "tags": ["date", "math", "utility"], "snippet": "const diffTime = Math.abs(date2 - date1);\nconst diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));", "usage": "Calculates the difference between two JavaScript Date objects in milliseconds and converts the result into the number of days.", "details": "Relies on dates being coerced to their numerical millisecond values.", "rating": 4.1 },
+    { "id": "url-hash-router", "name": "URL Hash Router Logic", "tags": ["js", "router", "spa"], "snippet": "window.addEventListener('hashchange', () => {\n    const hash = window.location.hash.slice(1);\n    // Route logic here\n});", "usage": "The foundational logic for creating a simple client-side router (SPA - Single Page Application) that manages navigation without full page reloads.", "details": "The `hashchange` event fires when the URL fragment identifier (`#`) changes.", "rating": 4.2 },
+    { "id": "memo-usememo", "name": "React useMemo Hook", "tags": ["react", "hook", "performance"], "snippet": "const computedValue = useMemo(() => {\n    return calculateExpensive(a, b);\n}, [a, b]);", "usage": "Memorizes the result of a function call, only re-computing the value when one of the dependencies in the dependency array changes.", "details": "Used to avoid expensive calculations on every render, essential for performance optimization in complex React components.", "rating": 4.8 },
+    { "id": "memo-usecallback", "name": "React useCallback Hook", "tags": ["react", "hook", "performance"], "snippet": "const stableHandler = useCallback(() => {\n    // function body\n}, [dependency]);", "usage": "Memorizes the function itself, ensuring that the function reference remains the same across renders unless dependencies change. Crucial for child components relying on reference stability.", "details": "Often used to prevent unnecessary re-renders in optimized child components (like when used with `React.memo`).", "rating": 4.7 }
+  ],
+  "submissions": []
+}

@@ -1,0 +1,96 @@
+.c-hero {
+    text-align: center;
+    padding: rem(50) 0 rem(80);
+    
+    &__title {
+        color: $color-primary;
+        margin-bottom: rem(8);
+    }
+    
+    &__subtitle {
+        @include text-style(18);
+        margin-bottom: rem(20);
+        
+        b {
+            color: $color-primary;
+        }
+    }
+}
+
+.c-tool-carousel {
+    position: relative;
+    padding: rem(30) 0;
+    
+    &__track {
+        @include flex-layout(center, stretch);
+        gap: rem(40);
+        
+        overflow-x: scroll; 
+        scrollbar-width: none; 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        
+        width: 100%; 
+        padding: 0 rem(80);
+        
+        @include only-mobile {
+             padding: 0 rem(20);
+        }
+    }
+    
+    &__item {
+        flex-shrink: 0; 
+        width: rem(280);
+        
+        &--featured {
+            width: rem(360); 
+            
+            .c-card {
+                padding: rem(30);
+                height: rem(380);
+            }
+        }
+
+        .c-card {
+            padding: rem(24);
+            height: rem(300);
+            @include transition-default(all, 0.4s);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            
+            &:hover {
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            }
+        }
+    }
+
+    &__nav {
+        @include absolute-center-y;
+        background: none;
+        border: none;
+        padding: rem(10);
+        @include text-style(24, 700, 1, $color-text);
+        z-index: 10;
+        cursor: pointer;
+        
+        .fas {
+            color: $color-text-secondary;
+            @include transition-default(color);
+        }
+
+        &:hover .fas {
+            color: $color-primary;
+        }
+
+        &--left {
+            left: rem(-10);
+            @include respond-to('sm') { left: rem(-40); }
+            @include only-mobile { display: none; }
+        }
+        &--right {
+            right: rem(-10);
+            @include respond-to('sm') { right: rem(-40); }
+            @include only-mobile { display: none; }
+        }
+    }
+}

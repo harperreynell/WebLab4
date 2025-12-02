@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Tools Showcase - Bubble sort</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/src/styles/main.scss">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module" src="/src/js/tool-details.js"></script>
+</head>
+<body>
+
+    <header class="l-header">
+        <div class="l-container l-header__content">
+            <div class="c-logo">
+                <a href="index.html" class="c-logo__link" aria-label="Dev Tools Showcase: Go to Home">
+                    <img 
+                        src="/src/assets/logo.png" 
+                        srcset="/src/assets/logo.png 1x, /src/assets/logo@2x.png 2x" 
+                        class="c-logo__img"
+                        height="40" 
+                        alt="Dev Tools Showcase Logo">
+                </a>
+            </div>
+            
+            <nav class="c-nav" aria-label="Main navigation">
+                <ul class="c-nav__list">
+                    <li class="c-nav__item"><a href="index.html" class="c-nav__link">Home</a></li>
+                    <li class="c-nav__item"><a href="tools.html" class="c-nav__link" aria-current="page">Tools</a></li>
+                    <li class="c-nav__item"><a href="about.html" class="c-nav__link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="l-main l-container c-tool-details-page">
+        <h1 class="c-tool-details__title">Tool details</h1>
+        
+        <article class="c-tool-details l-grid l-grid--2-cols-details">
+            
+            <section class="c-code-block c-code-block--featured">
+                <div class="c-code-block__wrapper">
+                    <pre><code class="c-code-block__code code-content language-javascript">
+                    </code></pre>
+                    <button class="c-code-block__copy-btn" aria-label="Copy code">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </section>
+            
+            <section class="c-metadata">
+                <h2 class="u-hide-visually">Metadata</h2>
+                <dl class="c-metadata__list">
+                    <div class="c-metadata__item">
+                        <dt>Name:</dt>
+                        <dd class="tool-name">Bubble sort</dd> 
+                    </div>
+                    <div class="c-metadata__item">
+                        <dt>Usage:</dt>
+                        <dd class="tool-usage">Bubble sort is used for sorting</dd> 
+                    </div>
+                    <div class="c-metadata__item">
+                        <dt>Details:</dt>
+                        <dd class="tool-details-text">Bubble sort is not optimized</dd> 
+                    </div>
+                    <div class="c-metadata__item">
+                        <dt>Github (or other source):</dt>
+                        <dd class="tool-github-link"><a href="#" class="c-metadata__link">github (or other source)</a></dd> 
+                    </div>
+                </dl>
+                
+                <aside class="c-similar-tools u-mt-6" aria-labelledby="similar-tools-heading">
+                    <h2 id="similar-tools-heading">Similar tools:</h2>
+                    <p><a href="#" class="c-similar-tools__link">link</a></p> 
+                </aside>
+            </section>
+        </article>
+    </main>
+
+    <footer class="l-footer">
+        <div class="l-container">
+            <p>&copy; 2025 Dev Tools Showcase | 
+                <a href="https://github.com/olegbb1502/web-template-2025" aria-label="Go to GitHub repository">
+                    <i class="fab fa-github"></i> @github
+                </a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

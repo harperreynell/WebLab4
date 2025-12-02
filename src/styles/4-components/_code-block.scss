@@ -1,0 +1,70 @@
+.c-code-block {
+    &__wrapper {
+        position: relative;
+        background-color: $color-surface;
+        border-radius: rem(12);
+        height: 100%; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        
+        .c-code-block--featured & {
+            border-radius: rem(16);
+        }
+    }
+    
+    &__copy-btn {
+        position: absolute;
+        top: rem(10);
+        right: rem(10);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        
+        i {
+            color: $color-text-secondary;
+            @include text-style(18);
+            @include transition-default(color);
+        }
+        
+        &:hover i {
+            color: $color-primary;
+        }
+    }
+
+    &__code {
+        @include text-style(16, 400, 1.4, $color-text);
+        font-family: monospace;
+        padding: rem(20);
+        display: block;
+        
+        @include flex-layout(center, center); 
+        min-height: rem(300); 
+    }
+}
+
+.c-metadata {
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: rem(20);
+    }
+    
+    &__item {
+        @include flex-layout(flex-start, baseline);
+        gap: rem(10);
+        
+        dt {
+            @include text-style(18, 700, 1.2, $color-text);
+            min-width: rem(100);
+        }
+        
+        dd {
+            @include text-style(18, 400, 1.2, $color-text-secondary);
+            margin: 0;
+        }
+    }
+    
+    &__link {
+        color: $color-primary;
+        @include text-style(18, 400);
+    }
+}
